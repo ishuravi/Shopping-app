@@ -1,16 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:shopping/Provider/add_to_cart_provider.dart';
 import 'package:shopping/constants.dart';
-import 'package:flutter/material.dart';
-import 'package:shopping/screens/login_signup/login_screen.dart';
+import 'package:shopping/screens/checkout/thank_you.dart';
 
-import '../checkout/checkout_screen.dart';
+import '../login_signup/login_screen.dart'; // Import the LoginScreen
 
-class CheckOutBox extends StatelessWidget {
-  const CheckOutBox({super.key});
+class CheckOutBox1 extends StatelessWidget {
+  const CheckOutBox1({super.key});
 
   @override
   Widget build(BuildContext context) {
     final provider = CartProvider.of(context);
+    final isAuthenticated = false; // Replace with your actual authentication check
+
     return Container(
       height: 300,
       width: double.infinity,
@@ -36,14 +38,16 @@ class CheckOutBox extends StatelessWidget {
               ),
               filled: true,
               fillColor: kcontentColor,
-              hintText: "Enter Discoutn Code",
+              hintText: "Enter Discount Code",
               hintStyle: const TextStyle(
                 color: Colors.grey,
                 fontWeight: FontWeight.w600,
                 fontSize: 14,
               ),
               suffixIcon: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Apply discount code functionality
+                },
                 child: const Text(
                   "Apply",
                   style: TextStyle(
@@ -60,7 +64,7 @@ class CheckOutBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                "SbuTotal",
+                "SubTotal",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.grey,
@@ -73,7 +77,7 @@ class CheckOutBox extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
-              )
+              ),
             ],
           ),
           const SizedBox(height: 10),
@@ -83,7 +87,7 @@ class CheckOutBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                "total",
+                "Total",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -95,32 +99,43 @@ class CheckOutBox extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
-              )
+              ),
             ],
           ),
           const SizedBox(height: 20),
           ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: kprimaryColor,
-                minimumSize: const Size(double.infinity, 55),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: kprimaryColor,
+              minimumSize: const Size(double.infinity, 55),
+            ),
+            onPressed: () {
+              if (!isAuthenticated) {
+                // Navigate to Login screen if not authenticated
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ThankYouPage()),
+                );
+              } else {
+                // If authenticated, proceed to thank you page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ThankYouPage(),
+                  ),
+                );
+              }
+            },
+            child: const Text(
+              "Check Out",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: Colors.white,
               ),
-              onPressed: () { Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => LoginPage(),
-                ),
-              );},
-              child: const Text(
-                "Proceed",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.white,
-                ),
-              ))
+            ),
+          ),
         ],
       ),
     );
   }
 }
-// now we add the provider and display the total price

@@ -69,20 +69,20 @@ class ProductCard extends StatelessWidget {
                             fontSize: 17,
                           ),
                         ),
-                        // Row(
-                        //   children: List.generate(
-                        //     product.colors.length,
-                        //         (index) => Container(
-                        //       width: 18,
-                        //       height: 18,
-                        //       margin: const EdgeInsets.only(right: 4),
-                        //       decoration: BoxDecoration(
-                        //         color: product.colors[index],
-                        //         shape: BoxShape.circle,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
+                        Row(
+                          children: List.generate(
+                            product.colors.length,
+                                (index) => Container(
+                              width: 18,
+                              height: 18,
+                              margin: const EdgeInsets.only(right: 4),
+                              decoration: BoxDecoration(
+                                color: product.colors[index],
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

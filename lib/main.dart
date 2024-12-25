@@ -2,6 +2,7 @@ import 'package:shopping/Provider/add_to_cart_provider.dart';
 import 'package:shopping/Provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'Provider/Id_provider.dart';
 import 'screens/nav_bar_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(create: (_)=>CartProvider()),
       // for favorite
       ChangeNotifierProvider(create: (_)=>FavoriteProvider()),
+      ChangeNotifierProvider(create: (_)=>CategoryProvider()),
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
